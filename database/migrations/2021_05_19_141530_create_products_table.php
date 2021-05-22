@@ -17,16 +17,15 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->double('price');
-            $table->string('category');
+            $table->unsignedBigInteger('id_category');
             $table->string('file_path');
             $table->text('description');
             $table->unsignedBigInteger('id_promo');
+            $table->foreign('id_category')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_promo')->references('id')->on('promotions')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
-        Schema:: table('products', function (Blueprint $table) {
-            $table->foreign('category')->references('name')->on('categories')->onDelete('cascade');
-            $table->foreign('id_promo')->references('id')->on('users')->onDelete('cascade');
-    });}
+        }
 
     /**
      * Reverse the migrations.

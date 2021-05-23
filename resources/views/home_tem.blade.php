@@ -48,7 +48,7 @@
 
                     <div class="col-xl-12 col-lg-12 col-md-9 col-sm-9 ">
                         <div class="menu-area">
-                            <div class="logo" style="margin-left:0%"><a href="#"><i class="fas fa-first-aid"></i>
+                            <div class="logo" style="margin-left:0%"><a href="#"><i class="fas fa-tshirt"></i>
                                     shopclothes </a>
                             </div>
                             <div class="limit-box">

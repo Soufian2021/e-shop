@@ -9,6 +9,6 @@ class MainController extends Controller
 {
     public function index() {
 
-        return view('Shop\index');
+        return view('home_tem');
     }
 }

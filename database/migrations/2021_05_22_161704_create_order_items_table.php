@@ -13,18 +13,17 @@ class CreateOrderItemsTable extends Migration
      */
     public function up()
     {
-        
-            Schema::create('order_items', function (Blueprint $table) {
-                $table->bigIncrements('id');
-                $table->unsignedBigInteger('order_id')->index();
-                $table->unsignedBigInteger('product_id')->index();
-                $table->unsignedInteger('quantity');
-                $table->decimal('price', 20, 6);
-                $table->foreign('order_id')->references('id')->on('orders')->onUpdate('cascade')->onDelete('cascade');
-                $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
-                $table->timestamps();
-            });
-            
+
+        Schema::create('order_items', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('order_id')->index();
+            $table->unsignedBigInteger('product_id')->index();
+            $table->unsignedInteger('quantity');
+            $table->decimal('price', 20, 6);
+            $table->foreign('order_id')->references('id')->on('orders')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**

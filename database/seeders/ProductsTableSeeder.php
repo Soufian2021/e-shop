@@ -13,6 +13,5 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        $product = new 
     }
 }

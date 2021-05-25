@@ -6,10 +6,13 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Role;
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+
+    // protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.
@@ -40,4 +43,28 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Models\Role');
+    }
+
+
+    /**
+     * Helper Function HasAnyRoles
+     * @param array roles
+     */
+    public function hasAnyRoles($roles)
+    {
+        return null !== $this->roles()->whereIn('name', $roles)->first();
+    }
+
+    /**
+     * Helper Function HasAnyRole
+     * @param string role
+     */
+    public function hasAnyRole($roles)
+    {
+        return null !== $this->roles()->where('name', $roles)->first();
+    }
 }

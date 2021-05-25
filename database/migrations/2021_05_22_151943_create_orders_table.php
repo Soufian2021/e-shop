@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->string('order_number')->unique();
             $table->unsignedBigInteger('user_id');
-            $table->enum('statuts',['pending','processing','completed'])->default('pending');
+            $table->enum('statuts', ['pending', 'processing', 'completed'])->default('pending');
             $table->decimal('grand_total', 20, 6);
             $table->unsignedInteger('item_count');
             $table->string('first_name');
@@ -31,7 +31,6 @@ class CreateOrdersTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
-       
     }
 
     /**

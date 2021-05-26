@@ -48,4 +48,6 @@ Route::get('basket/empty', [App\Http\Controllers\BasketController::class, 'empty
 
 Route::group(['middleware' => ['auth']], function () {
     Route::post('/checkout', [App\Http\Controllers\CheckoutController::class,'getCheckout'])->name('checkout.index');
-    Route::post('/checkout/order', [App\Http\Controllers\CheckoutController::class,'placeOrder'])->name('checkout.place.order');});
+    Route::post('/checkout/order', [App\Http\Controllers\CheckoutController::class,'placeOrder'])->name('checkout.place.order');
+    Route::get('/checkout/show', [App\Http\Controllers\CheckoutController::class,'show'])->name('checkout.show');
+});

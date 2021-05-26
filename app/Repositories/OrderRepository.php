@@ -47,7 +47,7 @@ class OrderRepository implements OrderContract
           $products = Product::all();
           $order_item = new Order_item;
         foreach ($orders as $order) {
-            $item = new OrderItem;
+            $item = new Order_item;
             $total = $item['price'] * $item['quantity'];
             $item_quantity = $item['quantity'];
             $order_item->order_id = $order->id;

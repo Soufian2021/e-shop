@@ -17,7 +17,7 @@ class OrderController extends Controller
     }
     public function edit($id)
     {
-        
+
         return view('orders.edit')->with(['order' => Order::find($id)]);
     }
 
@@ -32,12 +32,8 @@ class OrderController extends Controller
     {
 
         $order = Order::find($id);
-        // $order->statuts->sync($request->statuts);
-        // $order->statuts=$request;
-        // Order::find($statuts)=$order->statuts;
-        
-        // $order->roles()->sync($request->roles);
-// 
+        $order->statuts = $request->statuts;
+        $order->save();
         return redirect()->route('admin.orders.index')->with('success', $order->statuts . ' has been updated.');
     }
 }

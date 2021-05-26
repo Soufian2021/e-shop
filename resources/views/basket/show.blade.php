@@ -56,7 +56,7 @@
                     </td>
                 </tr>
                 @endforeach
-                <form method="POST" action="#" class="form-inline d-inline-block">
+                <form method="POST" action="{{ route('checkout.index') }}" class="form-inline d-inline-block">
                     {{ csrf_field() }}
                     <tr colspan="2">
                         <td colspan="4">Total général</td>

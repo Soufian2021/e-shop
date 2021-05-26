@@ -22,6 +22,7 @@
                             <th scope="col">Order Amount</th>
                             <th scope="col">Qty.</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,7 +35,12 @@
                             <td>{{ $order->last_name }}</td>
                             <td>{{ config('settings.currency_symbol') }}{{ $order->grand_total }}</td>
                             <td>{{ $order->item_count  }}</td>
-                            <td><span class="badge badge-success">{{ strtoupper($order->status) }}</span></td>
+                            <td><span class="badge badge-success">{{ strtoupper($order->statuts) }}</span></td>
+                            <td>
+                            <a href="{{ route('admin.orders.edit', $order->id) }}" class="float-left">
+                                        <button type="button" class="btn btn-primary btn-sm"><i
+                                                class="far fa-edit"></i></button>
+                                    </a></td>
                         </tr>
                         @empty
                         <div class="col-sm-12">

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Shop\MainController;
 
@@ -31,6 +32,10 @@ Auth::routes();
 Route::get('/',  [App\Http\Controllers\Shop\MainController::class, 'index']);
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('/admin/users', App\Http\Controllers\UserController::class);
+});
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('/admin/orders', App\Http\Controllers\OrderController::class);
 });
 
 Route::get('/TEE SHIRTS', [App\Http\Controllers\ProductController::class, 'index_cli']);

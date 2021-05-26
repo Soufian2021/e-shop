@@ -24,4 +24,8 @@ class Order extends Model
     {
         return $this->hasMany(Order_item::class);
     }
+    public function roles()
+    {
+        return $this->belongsToMany('App\Models\Order');
+    }
 }

@@ -37,10 +37,10 @@
                             <td>{{ $order->item_count  }}</td>
                             <td><span class="badge badge-success">{{ strtoupper($order->statuts) }}</span></td>
                             <td>
-                            <a href="{{ route('admin.orders.edit', $order->id) }}" class="float-left">
-                                        <button type="button" class="btn btn-primary btn-sm"><i
-                                                class="far fa-edit"></i></button>
-                                    </a></td>
+                                <a href="{{ route('admin.orders.edit', $order->id) }}" class="float-left">
+                                    <button type="button" class="btn btn-primary btn-sm"><i
+                                            class="far fa-edit"></i></button>
+                                </a></td>
                         </tr>
                         @empty
                         <div class="col-sm-12">

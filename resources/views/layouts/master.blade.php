@@ -48,13 +48,23 @@
 
                     <div class="col-xl-12 col-lg-12 col-md-9 col-sm-9 ">
                         <div class="menu-area">
-                            <div class="logo" style="margin-left:6%"><a href="#"><i class="fas fa-tshirt"></i>
+                            <div class="logo" style="margin-left:6%"><a href="/"><i class="fas fa-tshirt"></i>
                                     shopclothes </a>
                             </div>
                             <div class="limit-box">
                                 <nav class="main-menu" style="margin-right: 78px">
                                     <ul class="menu-area-main">
-                                        <li> <a href="#"><i class="fa fa-home"></i> Home</a> </li>
+                                        {{-- <li>
+
+                                            <form action="#" class="d-flex mr-3">
+
+                                                <input type="text" name="q" class="form-control" value="Search">
+
+                                                <button type="submit" class="btn btn-info"><i class="fa fa-search"
+                                                        aria-hidden="true"></i></button>
+                                            </form>
+                                        </li> --}}
+                                        <li> <a href="/"><i class="fa fa-home"></i> Home</a> </li>
                                         @can('manage')
                                         <li> <a href="{{ route('products.index') }} "> Manage Products</a> </li>
                                         @endcan
@@ -100,7 +110,8 @@
 
                                             <div class="dropdown-menu dropdown-menu-right"
                                                 aria-labelledby="navbarDropdown">
-                                                <a class="dropdown-item" href="{{ route('checkout.show') }}">Mes commandes  </a>
+                                                <a class="dropdown-item" href="{{ route('checkout.show') }}">Mes
+                                                    commandes </a>
                                                 <a class="dropdown-item" href="{{ route('basket.show') }}">Panier</a>
                                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
@@ -120,9 +131,40 @@
                         </div>
                     </div>
                 </div>
+
+
             </div>
             <!-- end header inner -->
     </header>
+
+    {{-- new lines added  --}}
+    <div class="container">
+        @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
+
+        @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+        @endif
+
+        @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul class="mb-0 mt-0">
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+        {{-- new lines added  --}}
+    </div>
+
+
+
     <!-- end header -->
 
     @yield('content');

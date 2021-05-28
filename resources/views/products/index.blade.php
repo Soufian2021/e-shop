@@ -34,10 +34,8 @@
         @foreach ($products as $product)
         <tr>
             <td>{{ ++$i }}</td>
-            <td><img style="width:600px;height:150px" src="{{ asset('/storage/product/'. $product->file_path ) }}"
-                    alt="First slide">
-            </td>
-            <td>{{ $product->title }}</td>
+            <td><img style="width:600px;height:150px" src="{{ asset('/storage/product/'. $product->file_path ) }}" </td>
+                    <td>{{ $product->title }}</td>
             <td>{{ $product->price }} Dh</td>
             <td>{{ $product->id_category }}</td>
             <td>{{ $product->description }}</td>

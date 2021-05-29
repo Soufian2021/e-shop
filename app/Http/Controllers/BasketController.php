@@ -61,23 +61,25 @@ class BasketController extends Controller
         return back()->withMessage("Panier vidé");
     }
 
-    public function storeCoupon(Request $request)
-    {
-        $code = $request->get('code');
+    // old version of coupon
 
-        $coupon = Promotion::where('code_promo', $code)->first();
+    // public function storeCoupon(Request $request)
+    // {
+    //     $code = $request->get('code');
 
-        if (!$coupon) {
-            return redirect()->back()->with('error', 'Le coupon est invalide.');
-        }
+    //     $coupon = Promotion::where('code_promo', $code)->first();
 
-        $request->session()->put('coupon', [
-            'code' => $coupon->code_promo,
-            'remise' => $coupon->discount($request->total)
-        ]);
+    //     if (!$coupon) {
+    //         return redirect()->back()->with('error', 'Le coupon est invalide.');
+    //     }
 
-        return redirect()->back()->with('success', 'Le coupon est appliqué.');
-    }
+    //     $request->session()->put('coupon', [
+    //         'code' => $coupon->code_promo,
+    //         'remise' => $coupon->discount($request->total)
+    //     ]);
+
+    //     return redirect()->back()->with('success', 'Le coupon est appliqué.');
+    // }
 
     public function destroyCoupon()
     {

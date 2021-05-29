@@ -82,6 +82,14 @@
                                         </li>
                                         @endcan
 
+                                        @can('manage')
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{url('/admin/view-coupons')}}">
+                                                Manage
+                                                Promotions</a>
+                                        </li>
+                                        @endcan
+
 
                                         @guest
                                         @if (Route::has('login'))

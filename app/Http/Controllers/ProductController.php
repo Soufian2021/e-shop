@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 use App\Models\Product;
@@ -12,7 +13,11 @@ class ProductController extends Controller
     //
     public function index()
     {
-        $products = Product::latest()->paginate(5);
+        // $products = Product::latest()->paginate(5);
+
+        $products = Product::all();
+
+        // $categories = Category::all();
 
         return view('products.index', compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 5);

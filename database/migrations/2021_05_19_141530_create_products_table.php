@@ -18,10 +18,12 @@ class CreateProductsTable extends Migration
             $table->string('title');
             $table->double('price');
             $table->unsignedBigInteger('id_category');
+            // $table->unsignedBigInteger('category_id');
             $table->string('file_path');
             $table->text('description');
             $table->unsignedBigInteger('id_promo')->nullable();
             $table->foreign('id_category')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
+            // $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('id_promo')->references('id')->on('promotions')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

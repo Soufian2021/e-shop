@@ -20,6 +20,7 @@ class CheckoutController extends Controller
     }
 
     public function getCheckout(Request $request)
+
     {
         $orders = Order::all();
         $total = $request->get('total');
@@ -34,15 +35,18 @@ class CheckoutController extends Controller
     {
         $orders = Order::all();
         return view('account-orders', ['orders' => $orders]);
+
     }
 
     public function placeOrder(Request $request)
     {
         // Before storing the order we should implement the
         // request validation which I leave it to you
+
         $orders = Order::all();
         $order = $this->orderRepository->storeOrderDetails($request->all());
 
         return view('account-orders', ['orders' => $orders, 'order' => $order]);
     }
 }
+

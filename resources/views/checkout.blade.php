@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+
 <section class="section-pagetop bg-dark">
     <div class="jumbotron">
         <h2 class="title-page">Checkout</h2>
@@ -101,4 +102,5 @@
         </form>
     </div>
 </section>
+
 @stop

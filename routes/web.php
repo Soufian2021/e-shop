@@ -31,6 +31,8 @@ Auth::routes();
 
 Route::get('/',  [App\Http\Controllers\Shop\MainController::class, 'index']);
 
+
+
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('/admin/users', App\Http\Controllers\UserController::class);
 });
@@ -51,6 +53,7 @@ Route::get('basket', [App\Http\Controllers\BasketController::class, 'show'])->na
 Route::post('basket/add/{product}', [App\Http\Controllers\BasketController::class, 'add'])->name('basket.add');
 Route::get('basket/remove/{product}', [App\Http\Controllers\BasketController::class, 'remove'])->name('basket.remove');
 Route::get('basket/empty', [App\Http\Controllers\BasketController::class, 'empty'])->name('basket.empty');
+
 Route::post('/coupon', [App\Http\Controllers\BasketController::class, 'storeCoupon'])->name('basket.store.coupon');
 Route::delete('/coupon', [App\Http\Controllers\BasketController::class, 'destroyCoupon'])->name('basket.destroy.coupon');
 
@@ -70,3 +73,4 @@ Route::match(['get', 'post'], '/admin/view-coupons', [App\Http\Controllers\Promo
 Route::match(['get', 'post'], '/admin/edit-coupon/{id}', [App\Http\Controllers\PromotionController::class, 'editCoupon']);
 Route::get('/admin/delete-coupon/{id}', [App\Http\Controllers\PromotionController::class, 'deleteCoupon']);
 Route::post('/admin/update-coupon-status', [App\Http\Controllers\PromotionController::class, 'updateStatus']);
+

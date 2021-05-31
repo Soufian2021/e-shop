@@ -2,9 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
 use App\Models\Product;
+use App\Models\Category;
+
+use App\Models\Promotion;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+
+
 // use App\Models\Category;
 
 class ProductController extends Controller
@@ -12,7 +19,13 @@ class ProductController extends Controller
     //
     public function index()
     {
-        $products = Product::latest()->paginate(5);
+
+        // $products = Product::latest()->paginate(5);
+
+        $products = Product::all();
+
+        // $categories = Category::all();
+
 
         return view('products.index', compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -126,4 +139,66 @@ class ProductController extends Controller
         return redirect()->route('products.index')
             ->with('success', 'products deleted successfully');
     }
+
+
+    public function applyCoupon(Request $request)
+    {
+        // Session::forget('CouponAmount');
+        // Session::forget('CouponCode');
+        // if ($request->isMethod('post')) {
+        //     $data = $request->all();
+        //     // echo "<pre>";print_r($data);die;
+        //     $couponCount = Promotion::where('code_promo', $data['code_promo'])->count();
+        //     if ($couponCount == 0) {
+        //         return redirect()->back()->with('flash_message_error', 'Coupon code does not exists');
+        //     } else {
+        //         // echo "Success";die;
+        //         $couponDetails = Promotion::where('code_promo', $data['code_promo'])->first();
+
+
+        //         //Coupon is ready for discount
+        //         // $session_id = Session::get('session_id');
+
+        //         if (Auth::check()) {
+        //             $user_email = Auth::user()->email;
+        //             $userCart = DB::table('cart')->where(['user_email' => $user_email])->get();
+        //         } else {
+        //             $session_id = Session::get('session_id');
+        //             $userCart = DB::table('cart')->where(['session_id' => $session_id])->get();
+        //         }
+        //         $total_amount = 0;
+        //         foreach ($userCart as $item) {
+        //             $total_amount = $total_amount + ($item->price * $item->quantity);
+        //         }
+        //         //Check if coupon amount is fixed or percentage
+        //         if ($couponDetails->amount_type == "Fixed") {
+        //             $couponAmount = $couponDetails->amount;
+        //         } else {
+        //             $couponAmount = $total_amount * ($couponDetails->amount / 100);
+        //             $coupon = intval($couponAmount);
+        //             // echo $coupon;die;
+        //         }
+        //         //Add Coupon code in session
+        //         Session::put('CouponAmount', $coupon);
+        //         Session::put('CouponCode', $data['coupon_code']);
+        //         return redirect()->back()->with('flash_message_success', 'Coupon Code is Successffully Applied.You are Availing Discount');
+        //     }
+        // }
+
+        $code = $request->get('code');
+
+        $coupon = Promotion::where('code_promo', $code)->first();
+
+        if (!$coupon) {
+            return redirect()->back()->with('error', 'Le coupon est invalide.');
+        }
+
+        $request->session()->put('coupon', [
+            'code' => $coupon->code_promo,
+            'remise' => $coupon->discount($request->total)
+        ]);
+
+        return redirect()->back()->with('success', 'Le coupon est appliqué.');
+    }
+
 }

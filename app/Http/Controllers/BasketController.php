@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\Order;
 use App\Models\Product;
+use App\Models\Promotion;
+
+
 use Illuminate\Http\Request;
 
 use App\Repositories\BasketSessionRepository;
@@ -21,6 +26,7 @@ class BasketController extends Controller
     {
         return view("basket.show"); // resources\views\basket\show.blade.php
     }
+  
     public function add(Product $product, Request $request)
     {
 
@@ -57,4 +63,33 @@ class BasketController extends Controller
         // Redirection vers le panier
         return back()->withMessage("Panier vidé");
     }
+
+
+    // old version of coupon
+
+    // public function storeCoupon(Request $request)
+    // {
+    //     $code = $request->get('code');
+
+    //     $coupon = Promotion::where('code_promo', $code)->first();
+
+    //     if (!$coupon) {
+    //         return redirect()->back()->with('error', 'Le coupon est invalide.');
+    //     }
+
+    //     $request->session()->put('coupon', [
+    //         'code' => $coupon->code_promo,
+    //         'remise' => $coupon->discount($request->total)
+    //     ]);
+
+    //     return redirect()->back()->with('success', 'Le coupon est appliqué.');
+    // }
+
+    public function destroyCoupon()
+    {
+        request()->session()->forget('coupon');
+
+        return redirect()->back()->with('success', 'Le coupon a été retiré.');
+    }
+
 }

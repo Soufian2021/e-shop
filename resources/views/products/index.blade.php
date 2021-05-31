@@ -25,6 +25,7 @@
             <th>No</th>
             <th>Picture</th>
 
+
             <th>Title</th>
             <th>Price</th>
             <th>Category</th>
@@ -34,12 +35,13 @@
         @foreach ($products as $product)
         <tr>
             <td>{{ ++$i }}</td>
-            <td><img style="width:600px;height:150px" src="{{ asset('/storage/product/'. $product->file_path ) }}"
-                    alt="First slide">
-            </td>
+
+            <td><img src="{{ asset('images/imgs/'. $product->file_path ) }}"></td>
             <td>{{ $product->title }}</td>
             <td>{{ $product->price }} Dh</td>
-            <td>{{ $product->id_category }}</td>
+            {{-- <td>{{ $product->id_category }}</td> --}}
+            <td>{{ $product->category->name }}</td>
+
             <td>{{ $product->description }}</td>
             <td>
                 <form action="{{ route('products.destroy',$product->id) }}" method="POST">
@@ -58,9 +60,13 @@
             </td>
         </tr>
         @endforeach
+
+
     </table>
 
-    {!! $products->links() !!}
+    {{-- {{$products->links()}} --}}
+
+
 </div>
 
 

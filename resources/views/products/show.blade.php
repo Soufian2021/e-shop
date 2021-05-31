@@ -14,8 +14,10 @@
 
         <!--Medias-->
         <div class="media p-5 " style="background:#FEFEE2;  padding:100px;">
-            <img class="mr-3" style="width:150px;height:150px"
-                src="{{ asset('./storage/product/'. $product->file_path ) }}" alt="First slide">
+
+            <img class="mr-3" style="width:150px;height:150px" src="{{ asset('images/imgs/'. $product->file_path ) }}"
+                alt="First slide">
+
             <div class="media-body">
                 <h5 class="mt-0">Produit Numero : {{ $product->id }} </h5>
                 <div class="col-xs-12 col-sm-12 col-md-12">
@@ -33,7 +35,9 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>category:</strong>
-                        {{ $product->category }}
+
+                        {{ $product->category->name }}
+
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">

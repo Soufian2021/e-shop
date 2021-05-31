@@ -30,6 +30,9 @@ Route::resource('/products', ProductController::class);
 Auth::routes();
 
 Route::get('/',  [App\Http\Controllers\Shop\MainController::class, 'index']);
+
+
+
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('/admin/users', App\Http\Controllers\UserController::class);
 });
@@ -51,8 +54,23 @@ Route::post('basket/add/{product}', [App\Http\Controllers\BasketController::clas
 Route::get('basket/remove/{product}', [App\Http\Controllers\BasketController::class, 'remove'])->name('basket.remove');
 Route::get('basket/empty', [App\Http\Controllers\BasketController::class, 'empty'])->name('basket.empty');
 
+Route::post('/coupon', [App\Http\Controllers\BasketController::class, 'storeCoupon'])->name('basket.store.coupon');
+Route::delete('/coupon', [App\Http\Controllers\BasketController::class, 'destroyCoupon'])->name('basket.destroy.coupon');
+
 Route::group(['middleware' => ['auth']], function () {
-    Route::post('/checkout', [App\Http\Controllers\CheckoutController::class,'getCheckout'])->name('checkout.index');
-    Route::post('/checkout/order', [App\Http\Controllers\CheckoutController::class,'placeOrder'])->name('checkout.place.order');
-    Route::get('/checkout/show', [App\Http\Controllers\CheckoutController::class,'show'])->name('checkout.show');
+    Route::post('/checkout', [App\Http\Controllers\CheckoutController::class, 'getCheckout'])->name('checkout.index');
+    Route::post('/checkout/order', [App\Http\Controllers\CheckoutController::class, 'placeOrder'])->name('checkout.place.order');
+    Route::get('/checkout/show', [App\Http\Controllers\CheckoutController::class, 'show'])->name('checkout.show');
 });
+
+//Apply Coupon Code
+Route::post('/cart/apply-coupon', [App\Http\Controllers\ProductController::class, 'applyCoupon']);
+
+
+//Coupons Route
+Route::match(['get', 'post'], '/admin/add-coupon', [App\Http\Controllers\PromotionController::class, 'addCoupon']);
+Route::match(['get', 'post'], '/admin/view-coupons', [App\Http\Controllers\PromotionController::class, 'viewCoupons']);
+Route::match(['get', 'post'], '/admin/edit-coupon/{id}', [App\Http\Controllers\PromotionController::class, 'editCoupon']);
+Route::get('/admin/delete-coupon/{id}', [App\Http\Controllers\PromotionController::class, 'deleteCoupon']);
+Route::post('/admin/update-coupon-status', [App\Http\Controllers\PromotionController::class, 'updateStatus']);
+

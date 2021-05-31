@@ -83,10 +83,85 @@
                 class="fas fa-arrow-right"></i> Continuer mes achats</a>
 
     </div>
-    @else
-    <div class="alert alert-info">Aucun produit au panier</div>
-    @endif
 
-</div>
 
-@endsection
+
+
+    {{-- last version of promo --}}
+    <div class="row p-4 bg-white rounded shadow-sm">
+        <div class="col-lg-6">
+            <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Code coupon
+            </div>
+            @if (!request()->session()->has('coupon'))
+            <div class="p-4">
+                <p class="font-italic mb-4">Si vous détenez un code Coupon, entrez-le dans le champ ci-dessous</p>
+                <form action="{{ url('/cart/apply-coupon') }}" method="POST">
+                    @csrf
+                    <input type="text" style="visibility:hidden" name="total" value="{{ $total }}">
+                    <div class="input-group mb-4 border rounded-pill p-2">
+
+                        <input type="text" placeholder="Entrez votre code ici" name="code"
+                            aria-describedby="button-addon3" class="form-control border-0">
+                        <div class="input-group-append border-0">
+                            <button id="button-addon3" type="submit" class="btn btn-dark px-4 rounded-pill"><i
+                                    class="fa fa-gift mr-2"></i>Appliquer le coupon</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            @else
+            <div class="p-4">
+                <p class="font-italic mb-4">Un coupon est déjà appliqué.</p>
+            </div>
+            @endif
+            <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Instructions pour le vendeur
+            </div>
+            <div class="p-4">
+                <p class="font-italic mb-4">Si vous souhaitez ajouter des précisions à votre commande, merci de les
+                    rentrer dans le champ ci-dessous</p>
+                <textarea name="" cols="30" rows="2" class="form-control"></textarea>
+            </div>
+        </div>
+
+        @else
+        <div class="alert alert-info">Aucun produit au panier</div>
+        @endif
+
+
+        {{-- last version of promo --}}
+        <div class="col-lg-6">
+            <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Détails de la commande
+            </div>
+            <div class="p-4">
+                <p class="font-italic mb-4">Les frais éventuels de livraison seront calculés suivant les informations
+                    que vous avez transmises.</p>
+                <ul class="list-unstyled mb-4">
+                    <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total
+                        </strong><strong>{{ $total }}</strong></li>
+                    @if (request()->session()->has('coupon'))
+                    <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Coupon
+                            {{ request()->session()->get('coupon')['code'] }}
+
+                            <form action="{{ route('basket.destroy.coupon') }}" method="POST" class="d-inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-outline-danger"><i
+                                        class="fa fa-trash"></i></button>
+                            </form>
+                        </strong><strong>{{ request()->session()->get('coupon')['remise'] }}</strong>
+                    </li>
+                    <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Nouveau
+                            total</strong><strong>
+                            {{ $total - request()->session()->get('coupon')['remise']}}
+                        </strong>
+                    </li>
+                    @endif
+                </ul><a href="#" class="btn btn-dark rounded-pill py-2 btn-block"><i class="fa fa-credit-card"
+                        aria-hidden="true"></i>
+                    Passer à la caisse</a>
+            </div>
+        </div>
+    </div>
+
+    @endsection
+

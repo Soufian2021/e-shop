@@ -17,7 +17,7 @@ class CreatePromotionsTable extends Migration
             $table->bigIncrements('id');
             $table->string('code_promo');
             $table->integer('pourcentage');
-            $table->string('file_path');
+            // $table->string('file_path');
             $table->timestamps();
         });
     }

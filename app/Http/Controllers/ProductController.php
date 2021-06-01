@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Product;
 use App\Models\Category;
 
 use App\Models\Promotion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+
 
 // use App\Models\Category;
 
@@ -16,11 +19,13 @@ class ProductController extends Controller
     //
     public function index()
     {
+
         // $products = Product::latest()->paginate(5);
 
         $products = Product::all();
 
         // $categories = Category::all();
+
 
         return view('products.index', compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -134,6 +139,7 @@ class ProductController extends Controller
             ->with('success', 'products deleted successfully');
     }
 
+
     public function applyCoupon(Request $request)
     {
         // Session::forget('CouponAmount');
@@ -193,4 +199,5 @@ class ProductController extends Controller
 
         return redirect()->back()->with('success', 'Le coupon est appliqué.');
     }
+
 }

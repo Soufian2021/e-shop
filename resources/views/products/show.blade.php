@@ -13,9 +13,12 @@
 
 
         <!--Medias-->
+
         <div class="media p-10" style="background:#FEFEE2;  padding:100px;">
             <img class="mr-3" style="width:260px;height:260px" src="{{ asset('images/imgs/'. $product->file_path ) }}"
+
                 alt="First slide">
+
             <div class="media-body">
                 <h5 class="mt-0">Produit Numero : {{ $product->id }} </h5>
                 <div class="col-xs-12 col-sm-12 col-md-12">
@@ -33,7 +36,9 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>category:</strong>
+
                         {{ $product->category->name }}
+
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">

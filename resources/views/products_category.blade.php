@@ -20,9 +20,11 @@
         <div class="col-md-4 col-md-4">
             <div class="card card-block">
 
+
                 {{-- <img style="height:180px;width:100%" src="{{ asset('/storage/product/'. $produit->file_path ) }}"
                 alt="Photo of sunset"> --}}
                 <img style="height:180px;width:100%" src="{{ url('images/imgs/'. $produit->file_path ) }}"
+
                     alt="Photo of sunset">
                 <div class="course-box">
                     <h2>{{ $produit->title }}</h2>

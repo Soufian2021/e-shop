@@ -9,7 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
+
     <title>vitrine_clothes</title>
+
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -34,6 +36,8 @@
 
 
 
+
+
 </head>
 <!-- body -->
 
@@ -52,12 +56,15 @@
 
                     <div class="col-xl-12 col-lg-12 col-md-9 col-sm-9 ">
                         <div class="menu-area">
+
                             <div class="logo" style="margin-left:6%"><a href="/"><i class="fas fa-tshirt"></i>
+
                                     shopclothes </a>
                             </div>
                             <div class="limit-box">
                                 <nav class="main-menu" style="margin-right: 78px">
                                     <ul class="menu-area-main">
+
                                         {{-- <li>
 
                                             <form action="#" class="d-flex mr-3">
@@ -69,6 +76,7 @@
                                             </form>
                                         </li> --}}
                                         <li> <a href="/"><i class="fa fa-home"></i> Home</a> </li>
+
                                         @can('manage')
                                         <li> <a href="{{ route('products.index') }} "> Manage Products</a> </li>
                                         @endcan
@@ -86,6 +94,7 @@
                                         </li>
                                         @endcan
 
+
                                         @can('manage')
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{url('/admin/view-coupons')}}">
@@ -93,6 +102,7 @@
                                                 Promotions</a>
                                         </li>
                                         @endcan
+
 
 
                                         @guest
@@ -122,8 +132,10 @@
 
                                             <div class="dropdown-menu dropdown-menu-right"
                                                 aria-labelledby="navbarDropdown">
+
                                                 <a class="dropdown-item" href="{{ route('checkout.show') }}">Mes
                                                     commandes </a>
+
                                                 <a class="dropdown-item" href="{{ route('basket.show') }}">Panier</a>
                                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
@@ -143,6 +155,7 @@
                         </div>
                     </div>
                 </div>
+
 
 
             </div>
@@ -177,6 +190,7 @@
 
 
 
+
     <!-- end header -->
 
     @yield('content');
@@ -189,29 +203,37 @@
                     <div class="col-lg-2 col-md-6 col-sm-12 width">
                         <div class="address">
                             <h3>Address</h3>
+
                             <i><img src="/icon/3.png">Locations</i>
+
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-6 col-sm-12 width">
                         <div class="address">
                             <h3>Menus</h3>
+
                             <i><img src="/icon/2.png">Locations</i>
+
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-6 col-sm-12 width">
                         <div class="address">
                             <h3>Useful Linkes</h3>
+
                             <i><img src="/icon/1.png">Locations</i>
+
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-6 col-sm-12 width">
                         <div class="address">
                             <h3>Social Media </h3>
                             <ul class="contant_icon">
+
                                 <li><img src="/icon/fb.png" alt="icon" /></li>
                                 <li><img src="/icon/tw.png" alt="icon" /></li>
                                 <li><img src="/icon/lin (2).png" alt="icon" /></li>
                                 <li><img src="/icon/instagram.png" alt="icon" /></li>
+                                
                             </ul>
                         </div>
                     </div>

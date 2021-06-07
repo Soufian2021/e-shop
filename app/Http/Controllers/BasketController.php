@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Promotion;
+
+
 use Illuminate\Http\Request;
 
 use App\Repositories\BasketSessionRepository;
@@ -23,7 +26,7 @@ class BasketController extends Controller
     {
         return view("basket.show"); // resources\views\basket\show.blade.php
     }
-
+  
     public function add(Product $product, Request $request)
     {
 
@@ -61,6 +64,7 @@ class BasketController extends Controller
         return back()->withMessage("Panier vidé");
     }
 
+
     // old version of coupon
 
     // public function storeCoupon(Request $request)
@@ -87,4 +91,5 @@ class BasketController extends Controller
 
         return redirect()->back()->with('success', 'Le coupon a été retiré.');
     }
+
 }

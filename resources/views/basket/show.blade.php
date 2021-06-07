@@ -87,6 +87,7 @@
 
 
 
+
     {{-- last version of promo --}}
     <div class="row p-4 bg-white rounded shadow-sm">
         <div class="col-lg-6">
@@ -164,3 +165,4 @@
     </div>
 
     @endsection
+

@@ -20,6 +20,7 @@
 </div>
 @endif --}}
 
+
 <table class="table table-bordered">
     <tr>
         <th>No</th>
@@ -42,6 +43,7 @@
         <td>
             <form action="{{ route('products.destroy',$product->id) }}" method="POST">
 
+
                 <a class="btn btn-info" href="{{ route('products.show',$product->id) }}"><i class="fas fa-eye"></i></a>
 
                 <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}"><i
@@ -56,9 +58,12 @@
     </tr>
     @endforeach
 
+
 </table>
 
+
 {{-- {{$products->links()}} --}}
+
 
 </div>
 
